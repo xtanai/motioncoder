@@ -66,28 +66,6 @@ pip install -e .[dev]
 python -m motioncoder.demos.hand_gesture_demo --ui minimal
 ```
 
----
-
-## 📦 Repository Layout (proposal)
-
-```
-motioncoder/
-  core/                 # core data types, intent graph, event bus
-  capture/              # camera interfaces, sync, calibration IO
-  reconstruct/          # 3D hand reconstruction (multi-view)
-  semantics/            # models, feature extractors, real-time intent
-  adapters/             # Coder2XY: blender/, cad/, dcc/
-  safety/               # safety heuristics, clamps, latency budgets
-  utils/                # timing, logs, metrics, config
-  demos/                # minimal runnable demos, mock sensors
-  tests/                # unit/integration tests
-assets/
-  models/               # weights (gitignored by default)
-  configs/              # yaml configs per pipeline
-scripts/
-  calibrate_*.py        # calibration helpers
-  export_*.py           # export adapters/models
-```
 
 ---
 
@@ -119,15 +97,7 @@ for event in mc.run():
 * **Time sync**: hardware trigger where possible; fallbacks with precise software sync.
 * **Undo/Redo**: macro groups per intent; deterministic param logging.
 
----
 
-## 🗺️ Roadmap (high level)
-
-* **0.1**: public skeleton, demo loop, mock sensors, Blender adapter (basic).
-* **0.2**: MVMono3D pipeline (global shutter), NIR lighting notes, calibration tools.
-* **0.3**: Real-time semantics (core gesture set), safety layer, latency metrics.
-* **0.4**: MVCore3D pipeline, improved reconstruction, parametric command templates.
-* **0.5**: Additional adapters (CAD/DCC), config UI, dataset tools.
 
 ---
 
