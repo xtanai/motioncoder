@@ -27,19 +27,20 @@
 * **Real‑time semantics:** 3D hand gestures → actionable **intents** with **live parameter updates** (e.g., *draw circle*, *split edge*, *move 5 mm*, *jog wheel*).
 * **Gesture → command mapping:** simple **Intent‑DSL (JSON)**, e.g.:
 
-```json
-{
-  "intent": "mesh.cut",
-  "params": {
-    "plane_normal": [0, 0, 1],
-    "offset_mm": { "$live": true, "source": "pinch_dial", "unit": "mm", "range": [-20, 20] }
+  ```json
+  {
+    "intent": "mesh.cut",
+    "params": {
+      "plane_normal": [0, 0, 1],
+      "offset_mm": { "$live": true, "source": "pinch_dial", "unit": "mm", "range": [-20, 20] }
+    }
   }
-}
-```
-  *$live: true = this parameter is continuously driven by a gesture (instead of a fixed number).*
-  *source describes the gesture binding (e.g., pinch_dial, twist, handwheel).*
-  *unit / range are optional for UI/clamping and validation.*
-  *(BSON/MessagePack optional later for low‑latency IPC.)*
+  ```
+  
+  * *$live: true = this parameter is continuously driven by a gesture (instead of a fixed number).*
+  * *source describes the gesture binding (e.g., pinch_dial, twist, handwheel).*
+  * *unit / range are optional for UI/clamping and validation.*
+  * *BSON/MessagePack optional later for low‑latency IPC.*
   
 * **Adapters:** `Coder2XY` bridges intents to target apps (start with **Blender**; CAD/DCC next).
 * **Deterministic pipelines:** sync/triggered multi‑view capture; reproducible outputs.
