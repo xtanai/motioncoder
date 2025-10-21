@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](#-license) [![Status: MVP](https://img.shields.io/badge/status-MVP--planning-yellow)]() [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-green)]()
 
-**Engine for AI Gesture Control** — translate hand gestures/signs into **precise CAD/DCC commands** in **real time**.
+**AI Gesture Control Engine** — translate hand gestures/signs into **precise CAD/DCC commands** in **real time**.
 
 > ⚠️ Status: **Early-stage, pre-alpha**. Public API may change.
 
