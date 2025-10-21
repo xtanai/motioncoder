@@ -110,9 +110,7 @@ for event in mc.run():
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read **CONTRIBUTING.md** and follow the **CODE_OF_CONDUCT.md**.
-
-**Good first issues**: docs improvements, demo fixes, simple adapter hooks, test coverage.
+Contributions are welcome! 
 
 ---
 
@@ -129,6 +127,4 @@ Unless stated otherwise, code is released under **Apache-2.0**. See **LICENSE**.
 
 ---
 
-### Appendix: Why not just 2D?
 
-2D→3D lifting pipelines used in creator tools are fine for animation previews, but often lack **precision/robustness** for CAD: occlusion, drift, no HW sync, higher latency. MotionCoder prioritizes **deterministic 3D capture** and **low-latency semantics**.
