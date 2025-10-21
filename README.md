@@ -2,6 +2,8 @@
 
 **Engine for AI Gesture Control** — translate hand gestures/signs into **precise CAD/DCC commands** in **real time**.
 
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](#-license) [![Status: MVP](https://img.shields.io/badge/status-MVP--planning-yellow)]() [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-green)]()
+
 > ⚠️ Status: **Early-stage, pre-alpha**. Public API may change.
 
 ---
@@ -74,15 +76,11 @@ python -m motioncoder.demos.hand_gesture_demo --ui minimal
 ```python
 from motioncoder import MotionCoder
 from motioncoder.capture import SensorConfig
-from motioncoder.adapters import BlenderAdapter
 
 # 1) configure sensors (choose one pipeline)
 cfg = SensorConfig.from_preset("MVMono3D")  # or "Leap2Pose", "MVCore3D"
 
-# 2) init MotionCoder with adapter
-mc = MotionCoder(sensor_cfg=cfg, adapter=BlenderAdapter())
-
-# 3) run in real-time
+# 2) run in real-time
 for event in mc.run():
     # event: {"intent": "move", "params": {"axis": "x", "value_mm": 5}}
     pass
