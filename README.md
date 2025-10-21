@@ -1,8 +1,8 @@
 # MotionCoder
 
-**Engine for AI Gesture Control** — translate hand gestures/signs into **precise CAD/DCC commands** in **real time**.
-
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](#-license) [![Status: MVP](https://img.shields.io/badge/status-MVP--planning-yellow)]() [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-green)]()
+
+**Engine for AI Gesture Control** — translate hand gestures/signs into **precise CAD/DCC commands** in **real time**.
 
 > ⚠️ Status: **Early-stage, pre-alpha**. Public API may change.
 
@@ -42,7 +42,7 @@
 
 ## 🎥 Recommended Sensors
 
-Choose from three sensor modules — **MVCore3D**, **Leap2Pose**, **MVMono3D** — based on your **budget** and target **quality**. Docs & hardware picks: 👉 **Sensor Guide** (repo link TBD).
+Choose from three sensor modules — **MVCore3D**, **Leap2Pose**, **MVMono3D** — based on your **budget** and target **quality**. Docs & hardware picks: 👉 [Sensor Guide](https://github.com/xtanai/sensor-guide)
 
 > **Note:** Many cameras/ToF sensors marketed as *3D hand tracking* are **not** suitable for this use case (reasons include **rolling shutter**, missing **HW sync/trigger**, low **FPS/high latency**, poor **NIR sensitivity**, unsuitable **optics/FOV**). See the Sensor Guide for specifics.
 
@@ -107,7 +107,7 @@ Contributions are welcome! Please read **CONTRIBUTING.md** and follow the **CODE
 
 ---
 
-## 📜 License
+## ⚖️ License
 
 Unless stated otherwise, code is released under **Apache-2.0**. See **LICENSE**.
 
