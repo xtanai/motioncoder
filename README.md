@@ -19,10 +19,9 @@
 
 ## 🧩 Key Features
 
-* **Stack (first experiments):** **ST-GCN** and **PoseC3D** as quick baselines for temporal gesture recognition.
+* **Stack (first experiments):** **ST-GCN**, **CTR-GCN** or **PoseC3D** as quick baselines for temporal gesture recognition.
 * **Stack (re‑implementation for full control):** **PyTorch** (custom **GRU/TCN** or lightweight **Transformer**) for real‑time intent inference and easier on‑prem optimization.
 * **Two learning modes:**
-
   * **Supervised:** train on labeled gesture sequences.
   * **Self‑supervised pretraining** → **supervised fine‑tuning:** learn representations first, then adapt with few labels.
 * **Real‑time semantics:** 3D hand gestures → actionable **intents** with **live parameter updates** (e.g., *draw circle*, *split edge*, *move 5 mm*, *jog wheel*).
