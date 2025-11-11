@@ -51,7 +51,7 @@
 
 ## 🎥 Recommended Sensors
 
-Choose from five sensor modules — **Pi5Track3D**, **MVCore3D**, **MVYUV3D**, **MVRaw3D**, **MVMono3D**, **Leap2Pose** — based on your **budget** and target **quality**. Docs & hardware picks: 👉 [Sensor Guide](https://github.com/xtanai/sensor-guide)
+Choose from six sensor modules — **Pi5Track3D**, **MVCore3D**, **MVYUV3D**, **MVRaw3D**, **MVMono3D**, **Leap2Pose** — based on your **budget** and target **quality**. Docs & hardware picks: 👉 [Sensor Guide](https://github.com/xtanai/sensor-guide)
 
 > **Note:** Many cameras/ToF sensors marketed as *3D hand tracking* are **not** suitable for this use case (reasons include **rolling shutter**, missing **HW sync/trigger**, low **FPS/high latency**, poor **NIR sensitivity**, unsuitable **optics/FOV**). See the Sensor Guide for specifics.
 
