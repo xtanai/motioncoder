@@ -12,7 +12,7 @@
 
 * **Real-time** gesture → **intent + parameters** → CAD/DCC commands (e.g., Blender).
 * **Modular**: capture/reconstruct → semantics → code/adapters.
-* **Sensor-flexible**: choose **MVCore3D**, **Leap2Pose**, or **MVMono3D** (budget → quality).
+* **Sensor-flexible**: choose **Pi5Track3D**, **MVCore3D**,  **MVYUV3D**,  **MVRAW3D**, **Leap2Pose**, or **MVMono3D** (budget → quality).
 * **On‑prem, low latency**, undo/redo grouping, reproducible runs.
 
 ---
