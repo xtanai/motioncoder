@@ -12,7 +12,6 @@
 
 * **Real-time** gesture → **intent + parameters** → CAD/DCC commands (e.g., Blender).
 * **Modular**: capture/reconstruct → semantics → code/adapters.
-* **Sensor-flexible**: choose **EdgeTrack**, **MVCore3D**,  **MVYUV3D**,  **MVRAW3D**, **Leap2Pose**, or **MVMono3D** (budget → quality).
 * **On‑prem, low latency**, undo/redo grouping, reproducible runs.
 
 ---
@@ -49,15 +48,6 @@
 
 ---
 
-## 🎥 Recommended Sensors
-
-Choose from six sensor modules — **EdgeTrack**, **MVCore3D**, **MVYUV3D**, **MVRAW3D**, **MVMono3D**, **Leap2Pose** — based on your **budget** and target **quality**. Docs & hardware picks: 👉 [Sensor Guide](https://github.com/xtanai/sensor-guide)
-
-> **Note:** Many cameras/ToF sensors marketed as *3D hand tracking* are **not** suitable for this use case (reasons include **rolling shutter**, missing **HW sync/trigger**, low **FPS/high latency**, poor **NIR sensitivity**, unsuitable **optics/FOV**). See the Sensor Guide for specifics.
-
-
----
-
 ## 🚀 Quickstart (Dev)
 
 > Python 3.10+, PyTorch ≥ 2.3 recommended. Linux/Windows tested; macOS possible (CPU/GPU varies).
@@ -76,26 +66,6 @@ pip install -e .[dev]
 # 4) run demo (synthetic stream)
 python -m motioncoder.demos.hand_gesture_demo --ui minimal
 ```
-
-
----
-
-## 🧪 Minimal API Sketch
-
-```python
-from motioncoder import MotionCoder
-from motioncoder.capture import SensorConfig
-
-# 1) configure sensors (choose one pipeline)
-cfg = SensorConfig.from_preset("MVMono3D")  # or "Leap2Pose", "MVCore3D"
-
-# 2) run in real-time
-for event in mc.run():
-    # event: {"intent": "move", "params": {"axis": "x", "value_mm": 5}}
-    pass
-```
-
----
 
 ## 🔧 Build & Dev Notes
 
