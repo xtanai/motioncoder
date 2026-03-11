@@ -6,7 +6,7 @@
 
 **AI Gesture Control Engine** — translating hand gestures and signs into **precise CAD/DCC commands** in **real time**.
 
-> ⚠️ **Status:** Early-stage, **pre-alpha**. Public APIs may change.
+> ⚠️ **Status:** Early-stage, **pre-alpha**. Public APIs may changea.
 
 ---
 
