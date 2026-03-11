@@ -1,24 +1,26 @@
 # MotionCoder
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](#-license)
-[![Status: MVP](https://img.shields.io/badge/status-MVP--planning-yellow)]()
+[![Status: pre-alpha](https://img.shields.io/badge/status-pre--alpha-yellow)]()
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-green)]()
 
-**AI Gesture Control Engine** — translating hand gestures and signs into **precise CAD/DCC commands** in **real time**.
+**MotionCoder** is a **gesture interaction engine** that translates spatial hand motion into **structured commands for 3D creation tools, VR environments, and professional authoring software**.
 
-> ⚠️ **Status:** Early-stage, **pre-alpha**. Public APIs may changea.
-
----
-
-## ✨ TL;DR
-
-* **Real-time**: gestures → **intent + parameters** → CAD/DCC commands (e.g., Blender).
-* **Modular stack**: capture & reconstruction → semantics → adapters.
-* **On-prem, low latency** with deterministic execution, undo/redo grouping, and reproducible runs.
+> ⚠️ **Status:** Early-stage **pre-alpha**. Public APIs, architecture, and internal modules may change.
 
 ---
 
-## 🧠 Why MotionCoder Needs Dedicated Hardware
+## TL;DR
+
+- Real-time pipeline: **motion → intent → application command**
+- Built for **3D creation workflows**, not casual novelty interaction
+- Designed for **low-latency, deterministic, and reproducible input**
+- Integrates with **precise spatial tracking systems** such as **EdgeTrack**
+- Intended for **Blender, Unreal Engine, VR workflows, CAD, simulation, and other professional tools**
+
+---
+
+## Why MotionCoder Needs Dedicated Hardware
 
 Reliable gesture-driven authoring requires **stable, high-quality 3D keypoints** (true **3D pose**, not 2D projections).
 Jittery or temporally unstable keypoints make precise CAD/DCC interaction impossible.
@@ -32,82 +34,165 @@ EdgeTrack provides **time-consistent, metric 3D keypoints**, forming a robust fo
 
 ---
 
-## 🧩 Key Features
+## ML / Modeling Direction
 
-* **Baseline models (early experiments):**
+MotionCoder explores multiple approaches for **temporal gesture interpretation** and real-time spatial interaction.
 
-  * **ST-GCN**, **CTR-GCN**, **PoseC3D** for fast iteration on temporal gesture recognition.
-* **Custom re-implementation (full control):**
+The goal is not only gesture recognition, but **stable mapping from motion → intent → application command** suitable for professional 3D creation workflows.
 
-  * **PyTorch** with custom **GRU / TCN / lightweight Transformer** architectures for deterministic, low-latency, on-prem inference.
-* **Two learning modes:**
+### Current and experimental directions
 
-  * **Supervised learning** on labeled gesture sequences.
-  * **Self-supervised pretraining → supervised fine-tuning** for data efficiency.
-* **Real-time semantics:**
+#### Baseline models (early experimentation)
 
-  * 3D hand gestures mapped to actionable **intents** with **continuous parameter updates**
-    (e.g. *draw circle*, *split edge*, *move 5 mm*, *virtual jog wheel*).
-* **Gesture → command mapping** via a simple **Intent-DSL (JSON)**:
+Initial experiments evaluate established architectures for temporal gesture recognition:
 
-  ```json
-  {
-    "intent": "mesh.cut",
-    "params": {
-      "plane_normal": [0, 0, 1],
-      "offset_mm": {
-        "$live": true,
-        "source": "pinch_dial",
-        "unit": "mm",
-        "range": [-20, 20]
-      }
+- **ST-GCN**
+- **CTR-GCN**
+- **PoseC3D**
+
+These models allow rapid experimentation with motion sequences and gesture classification.
+
+---
+
+#### Custom architectures
+
+For production-oriented workflows, MotionCoder explores custom **PyTorch implementations** focused on deterministic and low-latency inference:
+
+- **GRU-based temporal models**
+- **TCN (Temporal Convolution Networks)**
+- **Lightweight Transformer architectures**
+
+The emphasis is on:
+
+- predictable latency
+- on-prem inference
+- reproducible outputs
+- minimal runtime overhead
+
+---
+
+### Learning modes
+
+MotionCoder supports two training approaches:
+
+**Supervised learning**
+
+- trained on labeled gesture sequences
+- optimized for specific workflows or applications
+
+**Self-supervised pretraining → supervised fine-tuning**
+
+- improves data efficiency
+- enables adaptation to different environments or gesture sets
+
+---
+
+### Real-time semantic interpretation
+
+Instead of producing raw skeleton streams, MotionCoder converts motion into **structured intents with continuous parameters**.
+
+Example interactions:
+
+- draw circle
+- split edge
+- move object by distance
+- control virtual dial / jog wheel
+- adjust tool parameters
+
+This enables gestures to act as **continuous spatial controllers** rather than simple triggers.
+
+---
+
+### Gesture → command mapping
+
+MotionCoder uses a simple **Intent DSL (JSON)** to map gestures to application commands.
+
+Example:
+
+```json
+{
+  "intent": "mesh.cut",
+  "params": {
+    "plane_normal": [0, 0, 1],
+    "offset_mm": {
+      "$live": true,
+      "source": "pinch_dial",
+      "unit": "mm",
+      "range": [-20, 20]
     }
   }
-  ```
+}
+````
 
-  * `$live: true` → parameter is continuously driven by a gesture.
-  * `source` defines the gesture binding (e.g., `pinch_dial`, `twist`, `handwheel`).
-  * `unit` / `range` enable validation, clamping, and UI feedback.
-  * **BSON / MessagePack** planned for low-latency IPC.
-* **Adapters:** `Coder2XY` bridges intents to target applications
-  (starting with **Blender**; CAD/DCC tools follow).
-* **Deterministic pipelines:** synchronized multi-view capture, reproducible outputs.
-* **Human-centric design:** beginner-friendly core gestures; no sign-language expertise required.
-* **Accessible by design:** gestures/signs as a **first-class interface**, with optional speech or text feedback.
+Explanation:
+
+* `$live: true` → parameter is continuously driven by a gesture
+* `source` → defines the gesture binding (e.g. `pinch_dial`, `twist`, `handwheel`)
+* `unit` / `range` → enable validation, clamping, and UI feedback
+* **BSON / MessagePack** are planned for low-latency IPC transport
 
 ---
 
-## 🚀 Quickstart (Dev)
+### Application adapters
 
-> Python 3.10+, **PyTorch ≥ 2.3** recommended.
-> Linux and Windows tested; macOS possible (CPU/GPU dependent).
+MotionCoder uses adapter modules (`Coder2XY`) that translate intents into application commands.
 
-```bash
-# 1) clone
-git clone https://github.com/xtanai/motioncoder.git
-cd motioncoder
+Initial targets include:
 
-# 2) (optional) create venv
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+* **Blender**
+* **Unreal Engine**
+* **VR environments**
+* **CAD / DCC tools**
 
-# 3) install
-pip install -e .[dev]
-
-# 4) run demo (synthetic stream)
-python -m motioncoder.demos.hand_gesture_demo --ui minimal
-```
+The adapter architecture allows MotionCoder to support multiple applications without modifying the core gesture engine.
 
 ---
 
-## 🔧 Build & Dev Notes
+### Deterministic pipelines
 
-* **Calibration:** checkerboard / Charuco; intrinsics & extrinsics stored in YAML (unit-tested loader).
-* **Latency budget:** target end-to-end **< 30–50 ms** (pipeline dependent).
-* **Time sync:** hardware triggers preferred; precise software fallback supported.
-* **Undo/Redo:** macro groups per intent; deterministic parameter logging.
+The system prioritizes:
+
+* synchronized multi-view capture
+* deterministic processing
+* reproducible gesture interpretation
+* stable parameter control
+
+This is essential for professional authoring workflows.
 
 ---
+
+### Human-centric interaction
+
+MotionCoder focuses on:
+
+* intuitive core gestures
+* minimal learning curve
+* no requirement for sign-language knowledge
+
+The aim is to provide **natural spatial interaction for creators and developers**.
+
+---
+
+### Accessibility
+
+Gestures and spatial motion are treated as **first-class input methods**.
+
+Optional interaction layers may include:
+
+* speech feedback
+* textual confirmation
+* visual UI feedback
+
+---
+
+### Future implementation direction
+
+If the architecture proves stable and the concept successful, the core runtime may later be **reimplemented in C/C++** for lower latency, better resource control, and production-oriented deployment.
+
+The **PyTorch-based research and training pipeline** would continue to serve as the main environment for model development and experimentation. This would allow newer model versions to be trained, evaluated, and exchanged more easily, while keeping the runtime layer stable and focused on execution.
+
+---
+
 
 ## 🤝 Contributing
 
