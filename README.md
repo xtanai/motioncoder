@@ -28,7 +28,7 @@ Jittery or temporally unstable keypoints make precise CAD/DCC interaction imposs
 For this reason, MotionCoder is designed to work with **deterministic multi-view capture hardware**.
 The reference implementation uses **EdgeTrack**, a dedicated on-edge stereo capture and reconstruction stack:
 
-➡️ **EdgeTrack:** [https://github.com/xtanai/edgetrack](https://github.com/xtanai/edgetrack)
+➡️ **EdgeTrack:** [https://github.com/edgetrackorg/overview](https://github.com/edgetrackorg/overview)
 
 EdgeTrack provides **time-consistent, metric 3D keypoints**, forming a robust foundation for MotionCoder’s semantic layer.
 
